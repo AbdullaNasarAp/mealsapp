@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mealsapp/dummy_data.dart';
-import 'package:mealsapp/models/meal.dart';
 
 class MealDetailScreen extends StatelessWidget {
   static const mealDetail = '/meal_detail_screen';
-  const MealDetailScreen({super.key});
+  final Function toggleMeals;
+  final Function ismealFavor;
+  const MealDetailScreen(
+      {super.key, required this.toggleMeals, required this.ismealFavor});
 
   @override
   Widget build(BuildContext context) {
@@ -68,9 +70,9 @@ class MealDetailScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context).pop(mealId);
+          toggleMeals(mealId);
         },
-        child: Icon(Icons.delete),
+        child: Icon(ismealFavor(mealId) ? Icons.star : Icons.star_border),
       ),
     );
   }
